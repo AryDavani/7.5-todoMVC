@@ -17,13 +17,6 @@ app.get('/', function (req, res) {
     res.sendFile(__dirname + "/static/index.html");
 })
 
-// const todo = new todoList({
-//   id: 2,
-//   title: "walk dog",
-//   order: 2,
-//   completed: false
-// });
-
 app.get('/api/todos', function(req, res) {
   todoList.find().then(function(results) {
     res.json(results);
@@ -57,15 +50,15 @@ app.put('/api/todos/:id', function(req, res) {
     result.title = "PUT is a full document update",
     result.order = 3,
     result.completed = false
-    result.save();                // dont know if this is right
-    res.json(result);            // dont know if this is right
+    result.save();              
+    res.json(result);
   });
 });
 
 app.patch('/api/todos/:id', function(req, res) {
   let urlid = req.params.id;
 
-  todoList.findById(urlid).then(function(result) {        // dont know if 'result' is neccessary
+  todoList.findById(urlid).then(function(result) {
     result.title = "PATCH is a partial document update"
     result.save();
     res.json(result);
